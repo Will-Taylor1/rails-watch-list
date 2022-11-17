@@ -1,8 +1,8 @@
 <h1><%= @list.name %></h1>
 
-<div class="container" class="d-flex flex-row bd-highlight mb-3" >
-  <div class="card-container" style="width: 500px;">
+<div class="container" class="d-flex flex-row bd-highlight mb-3" style="width: 1200px;" >
   <ul>
+  <div class=" d-flex align-items-cents justify-content-between m-10" style="width: 500px;">
     <% @list.bookmarks.each do |bookmark|%>
     <li>
       <div class="card" class="p-2 bd-highlight">
@@ -19,8 +19,8 @@
       </div>
     </li>
     <% end %>
-  </ul>
   </div>
+  </ul>
 </div>
 
 <div class="buttons">
