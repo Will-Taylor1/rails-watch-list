@@ -22,8 +22,9 @@
   </div>
   </ul>
 </div>
-<hr>
+
 <div class="text-center">
   <%= link_to "Add a new bookmark to a list", new_list_bookmark_path(@list), class: "btn btn-primary" %>
   <%= link_to "Go back to all lists", lists_path, class: "btn btn-primary" %>
+   <%= link_to "Delete", @list, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
 </div>
