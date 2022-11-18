@@ -5,10 +5,19 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
 
-Movie.create(title: "The Shawshank Redemption", overview: "Framed in the 1940s for double murder, upstanding banker Andy Dufresne begins a new life at the Shawshank prison", poster_url: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", rating: 8.7)
+require 'json'
+require 'open-uri'
 
-Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic.", poster_url: "https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg", rating: 7.9)
+url = 'https://tmdb.lewagon.com/movie/top_rated'
+user_serialized = URI.open(url).read
+movies = JSON.parse(user_serialized)
 
-Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
+movies['results'].each do |movie|
+  title = movie['title']
+  overview = movie['overview']
+  rating = movie['vote_average']
+  poster_url = "https://image.tmdb.org/t/p/w500#{movie['poster_path']}"
+  Movie.create(title: title, overview: overview, rating: rating, poster_url: poster_url)
+end
+# {"adult":false,"backdrop_path":"/rl7Jw8PjhSIjArOlDNv0JQPL1ZV.jpg","genre_ids":[10749,18],"id":851644,"original_language":"ko","original_title":"20 Century Girl","overview":"Yeon-du asks her best friend Bora to collect all the information she can about Baek Hyun-jin while she is away in the U.S. for heart surgery. Bora decides to get close to Baek's best friend, Pung Woon-ho first. However, Bora's clumsy plan unfolds in an unexpected direction. In 1999, a year before the new century, Bora, who turns seventeen, falls into the fever of first love.","popularity":348.878,"poster_path":"/od22ftNnyag0TTxcnJhlsu3aLoU.jpg","release_date":"2022-10-06","title":"20th Century Girl","video":false,"vote_average":8.8,"vote_count":242}

@@ -1,8 +1,13 @@
-<h1>Add a bookmark</h1>
-
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%= f.association :movie %>
-  <%= f.submit %>
-<% end %>
-<%= link_to "Go back to all lists", lists_path, class: "btn btn-primary" %>
+<div class="text-center">
+  <h1>Add a bookmark</h1>
+<hr>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
+<hr>
+<div class="text-center">
+  <%= link_to "Go back to all lists", lists_path, class: "btn btn-primary" %>
+</div>

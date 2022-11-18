@@ -1,11 +1,11 @@
-<h1>List of lists of movies</h1>
-
-<ul>
-  <% @lists.each do |list| %>
-    <li>
-    <%= link_to list.name, list_path(list) %>
-    </li>
-    <% end %>
-    <%= link_to "Add a new list", new_list_path, class: "btn btn-primary" %>
-</ul>
-
+<h1 class="text-center">List of lists of movies</h1>
+  <hr>
+  <ul class="text-center">
+    <% @lists.each do |list| %>
+      <li>
+      <%= link_to list.name, list_path(list) %>
+      </li>
+      <% end %>
+      <hr>
+      <%= link_to "Add a new list", new_list_path, class: "btn btn-primary" %>
+  </ul>
